@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Box Model</title>
+
+	<style type="text/css">
+	p{font-family: Arial, Helvetica, sans-serif;}
+	
+		#Box1{	
+			border-style: solid;
+			border-width: 2px;
+			border-color: purple;
+			padding: 10px;
+			width: 500px;
+			color: blue;}
+
+		#Box2{	
+			border-style: solid dashed;
+			border-width: 5px;
+			border-color: aliceblue;
+			padding: 10px;
+			width: 500px;
+			color: white;
+			background-color: purple;}
+		
+		#box3 {
+			overflow: scroll;
+			border-style: inset;
+			border-color: purple;
+			width: 495px;
+			padding: 10px;
+			background-color: blue;
+			color: white;
+			border-width: 5px;
+			height: 80px;
+		}
+		
+		#box4 {
+			border-style: outset;
+			border-color: orange red red orange;
+			width: 506px;
+			background-color: lightblue;
+			color: blue;
+			padding: 5px;
+			border-width: 5px;
+		}
+		
+		#box5 { 
+			color: blue;
+			border-color: purple;
+			width: 500px;
+			border-style: solid;
+			padding: 10px;
+			border-radius: 80px;
+		}
+		
+		#box6 {
+			background-color: purple;
+			color: white;
+			border-radius: 90px 120px 50px 90px;
+			border-style: solid;
+			width: 500px;
+			padding: 10px;
+			border-color: black purple purple black;
+		}
+		
+		#box7 {
+			border-style: double;
+			background-color: blue;
+			color: lightgrey;
+			border-top-right-radius: 20px 20px;
+			width: 500px;
+			padding: 10px;
+		}
+		
+		#box8 {
+			border-style: ridge;
+			background-color: lightblue;
+			color: blue;
+			padding: 10px;
+			width: 500px;
+		}
+		
+		#box9 {
+			border-style: dashed;
+			color: blue;
+			width: 500px;
+			border-color: purple;
+			padding: 10px;
+		}
+		
+		#box10 {
+			border-style: dashed;
+			color: white;
+			border-color: lightblue;
+			width: 500px;
+			background-color: purple;
+			border-width: 5px;
+			padding: 10px;
+		}
+		
+		#box11 {
+			border-style: ridge;
+			color: lightgrey;
+			background-color: blue;
+			border-color: purple;
+			width: 500px;
+			border-width: 4px;
+			padding: 10px;
+		}
+		
+		#box12 {
+			border-style: dashed;
+			color: blue;
+			background-color: lightblue;
+			padding: 10px;
+			width: 500px;
+			border-color: white;
+			border-width: 5px;
+		}
+		
+		#box13 {
+			border-style: dotted;
+			border-color: #ff9933 purple;
+			color: blue;
+			width: 500px;
+			padding: 10px;
+			border-width: 6px;
+		}
+		
+		#box14 {
+			background-color: purple;
+			color: white;
+			border-color: lightblue;
+			width: 510px;
+			border-style: solid;
+			padding: 10px;
+			border-radius: 60px;
+			border-style: dashed;
+			border-width: 4px;
+		}
+		
+		#box15 {
+			background-color: blue;
+			color: lightgrey;
+			border-style: ridge;
+			width: 520px;
+			padding: 4px;
+			border-color: purple;
+		}
+	</style>
+</head>
+<body>
+	
+	<p id="Box1">
+	Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language
+	</p>
+	
+	<p id="Box2">
+	CSS describes how HTML elements are to be displayed on screen, paper, or in other media. CSS saves a lot of work. It can control the layout of multipleweb pages all at once. External stylesheets are stored in CSS files.
+	</p>
+
+	<p id="box3">
+	All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.
+	</p>
+
+	<p id="box4">
+	A CSS rule-set consists of a selector and a declaration block: The selector points to the HTML	 element you want to style. The declaration block contains one or more declarations separated by semicolons. Each declaration includes a CSS property name and a value, separated by a colon.
+	</p>
+
+	<p id="box5">
+	A CSS pseudo-element is used to style specified parts of an element.
+	</p>
+
+	<p id="box6">
+	With CSS3, you can give any element "rounded corners", by using the border-radius property.</p>
+
+	<p id="box7">
+	With the CSS3 border-image property, you can set an image to be used as the border around an element.
+	</p>
+
+	<p id="box8">
+	Flexible boxes, or flexbox, is a new layout mode in CSS3. Use of flexbox ensures that elements behave predictably when the page layout must accommodate different screen sizes and different display devices.
+	</p>
+
+	<p id="box9">
+	The viewport is the user's visible area of a web page. The viewport varies with the device, and will be smaller on a mobile phone than on a computer screen.
+	<p>
+
+	<p id="box10">
+	Media query is a CSS technique introduced in CSS3. It uses the @media rule to include a block of CSS properties only if a certain condition is true.
+	</p>
+
+	<p id="box11">
+	The CSS border properties allow you to specify the style, width, and color of an element's border.
+	</p>
+
+	<p id="box12">
+	The CSS margin properties are used to create space around elements. The margin properties set the size of the white space OUTSIDE the border.
+	</p>
+
+	<p id="box13">
+	The CSS padding properties are used to generate space around content. The padding properties set the size of the white space between the element content and the element border.
+	</p>
+
+	<p id="box14">
+	Creating transparent images with CSS is easy. The CSS opacity property is a part of the CSS3 recommendation.
+	</p>
+
+	<p id="box15">
+	A pseudo-class is used to define a special state of an element.
+	</p>
+
+</body>
+</html>

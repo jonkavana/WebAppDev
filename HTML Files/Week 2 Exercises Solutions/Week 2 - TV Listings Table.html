@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Following is a possible solution to this exercise -->
+<html>
+<head>
+     <title>TV listings table</title>
+</head>
+<body>
+<!-- Comments added to explain code -->
+
+<table border="3" align="center">
+	<!-- First row has a background colour of yellow. Alternatively, the bgcolor="yellow" could have been placed in the following <th> tag and would achieve the same result -->
+	<tr bgcolor="yellow"> 
+		<th colspan="6"><b>TV LISTINGS</b></th>
+	</tr>
+	<tr>
+		<!-- First cell is created with a width of 100 pixels. All cells that appear underneath this will also have a width of 100 pixels. -->
+		<td width="100px"></td> <!-- There is no text inside this cell -->
+		<th width="100px">7.30pm</th> <!-- No need to make a <th> bold as it is bold by default -->
+		<th width="100px">8.00pm</th>
+		<th width="100px">8.30pm</th>
+		<th width="100px">9.00pm</th>
+		<th width="100px">9.30pm</th>
+	</tr>
+	<tr align="center"> <!-- Adding the align="center" attribute here will ensure that text in all cells in this row is centered -->
+		<th>Monday</th>
+		<td bgcolor="lightgrey" colspan="3">The Sunday Movie</td> <!-- The Sunday Movie cell spans across 3 columns -->
+		<td bgcolor="darkgrey" colspan="2"> News</td><!-- The Sunday Movie cell spans across 3 columns -->
+	</tr>
+	<tr align="center">
+		<th>Tuesday</th>
+		<td>TV Show</td>
+		<td colspan="2">The Monday Movie</td> <!-- Spans across 2 columns -->
+		<td bgcolor="lightblue" rowspan="3">News</td> <!-- Spans across 2 rows -->
+		<td bgcolor="lightgreen">Talk Show</td>
+	</tr>
+	<tr align="center">
+		<th>Wednesday</th>
+		<td>TV Show</td>
+		<td rowspan="2" colspan="2">Cops</td> <!-- Spans across 2 columns -->
+		<td>Current Affairs</td>
+	</tr>
+	<tr align="center">
+		<th>Thursday</th>
+		<td>TV Show</td>
+		<td bgcolor="lightgreen">Talk Show</td>
+	</tr>
+</table>
+
+</body>
+</html>

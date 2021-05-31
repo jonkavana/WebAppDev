@@ -1,0 +1,16 @@
+<DOCTYPE!>
+<html>
+<head>
+</head>
+
+<body>
+	<title> Exercise 1 Week 6 </title>
+
+function myFunction() {
+alert(“Hello, this alert is from a function”);
+}
+
+myFunction{}
+
+</body>
+</html>

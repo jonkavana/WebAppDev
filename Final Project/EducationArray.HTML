@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> CPI Array Creation </title>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+<!-- svg tags are using information that is not HTML, but XML, so the form in which the information needs to be input, must be that f teh XML standard --> 
+<svg width="200" height="300">
+	<rect width="100" height="200" color="blue"/>
+</svg>
+
+</head>
+
+<body> 
+	<div id="Education"></div>
+</body>
+</html>
+
+<script>
+var yearsOfEducation = [10, 20, 30, 40, 50, 60];
+let svgContainer = d3.select("Education").append("svg")
+	.attr("width", 1000)
+	.attr("height", 1000);
+
+let myRectangle = svgContainer.selectAll("rect")
+	.data(yearsOfEducation);
+
+myRectangle.enter()
+	.append("rect")
+		.attr("x", function(d, i){return 50 + (i*50);})
+		.attr("y")
+		.attr("width", 100)
+		.attr("height", function(d){return d;})
+		.attr("fill", "green");
+
+</script>

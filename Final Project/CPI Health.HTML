@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> CPI Health </title>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<style>
+			rect:hover {fill: blue;}
+		</style>
+		<style>
+	<!-- CSS style sheet adapted from following code block: -->
+	<!-- https://wdexplorer.com/20-examples-beautiful-css-typography-design/ -->
+			body {
+				font-family: Arial;
+				margin: 0;
+			}
+			h1 { 
+				color: #333333;
+				font-family: 'Bitter', serif;
+				font-size: 50px;
+				font-weight: normal;
+				line-height: 54px;
+				margin: 0 0 54px;
+			}
+			p { 
+				color: #333333;
+				font-family: Georgia, serif;
+				font-size: 18px;
+				line-height: 28px;
+				margin: 0 0 28px;
+			}
+			p:first-of-type { font-size: 26px; line-height: 36px; margin: 0 0 28px; }
+			a {
+				color: #c73036;
+				font-family: Georgia, serif;
+				text-decoration: underline;
+			}
+			a:hover { color: #333333; text-decoration: underline; }
+		</style>
+
+	<!-- svg tags are using information that is not HTML, but XML, so the form in which the information needs to be input, must be that of the XML standard --> 
+	</head>
+	<body> 
+
+		<h1 align="center">
+		Annual Average Percentage Change in Consumer Price Index (%)
+		</h1>
+		<h2>
+		Consumer Price Index for Health from 1990 - 2020
+		</h2>
+
+		<p>
+		This is a graph that displays the level of change in the price for Health in Ireland. 
+		The timespan of this begins in 1990 and goes up to and includes 2020 prices.	
+		</p>
+		<p>
+		As we can see from the trend in the price of Health services, for a near 23 year term, there was a continouos rise in the cost of these products and services. Not even when the recession of '07/'08, was there a reduction in costs. In fact, in '08 there was a steep rise. 
+		</p>
+		<p>
+		It was only in '14, that there was a decline in the change in prices for the Irish consumer for Health Services, which continued into '15. It's interesting to note the change in behaviour in the changes recorded and how steep a change occured bwteeen '19 & '20. Not only has the effect of COvid-19 caused such an uptake undoubtedly, but one that will likely continue into '21.
+		</p>
+			<h3>Select Chart Size:</h3>
+			<select id="chartHeight">
+				<option value="1000">1000 Pixels</option>
+				<option value="1100">1100 Pixels</option>
+				<option value="1250">1250 Pixels</option>
+			</select>
+			<h3>Select a Colour:</h3>
+			<input type="color" id="chartChoice">
+			
+			<button onclick="createGraph()">Create Graph</button>
+			<br>
+			<svg id="myDiv" style="border:1px solid black" height="1500" width="1800"></svg>
+		<!-- Source: viewBox Attribute: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox -->
+		<!-- Source: Style Attribute: https://stackoverflow.com/questions/14751178/adding-border-to-svg-image -->
+			
+			<!-- Image taken from: https://alcorehab.org/mixed-with/nicotine/ -->
+			<h3>Consumer Price Index for Alcohol & Tobacco</h3>
+			<a href="CPI A&T.HTML" display:inline-block >
+			<img src="Images/A&T.PNG" width="60px" height="40px" alt="Alcohol & Tobacco Information Site" style="width:30%;height:30%;"/>
+			</a>
+			
+			<h3>Consumer Price Index for Education</h3>
+			<a href="CPI Education.HTML" display:inline-block >
+			<img src="Images/Education.PNG" width="60px" height="40px" alt="Education Information Site" style="width:30%;height:30%;"/>
+			</a>
+	</body>
+</html>
+
+<script>
+function createGraph(){
+d3.csv("AAPRHealth.csv").then(function(data){
+// Source: https://data.cso.ie/#
+	console.log(data);
+// placing variable values against the bar chart	
+		var peak = document.getElementById("chartHeight").value;
+		var breadth = 1550;
+		var dataCount = data.length;
+		var gap = 10;
+		// Can't seem to make the colour selection variable effect the actual graph.
+		var chartColor = document.getElementById("chartChoice").value;
+
+//Convert to numbers from a string
+		data.forEach(function(d){
+			d.VALUE = Number(d.VALUE);
+			})
+			
+// Create a Y Scale
+		var yScale = d3.scaleLinear()
+			.domain([0, d3.max(data, function(d){
+				return d.VALUE;
+			})])
+			.range([peak, 0]);
+			
+// Create a Y Axis
+		var yAxis = d3.axisLeft()
+			.scale(yScale);
+			
+// Create a X Scale
+		var xScale = d3.scaleBand()
+			.domain(data.map(function(d){
+				return d.Year;
+			}))
+					
+// Axis calcualtion of x attribute of 50 px, multipled by number of years 31
+			.range([0, breadth]);
+	
+// Create a X Axis
+		var xAxis = d3.axisBottom()
+			.scale(xScale);
+
+// Remove all material previouly produced when page has been refreshed
+		d3.select("#myDiv").selectAll("*").remove();
+			
+// Create the SVG container in which the information will be contained.
+		var svgContainer = d3.select("#myDiv").append("svg")
+			.attr("width", 1800)
+			.attr("height", 2500);
+
+
+// and create the rectangle/shape that will use the information		
+		var myRectangle = svgContainer.selectAll("rect")
+			.data(data);
+	
+// method chaining has been used in order to effectively structure our object.
+		myRectangle.enter()
+			.append("rect")
+				.attr("x", function(d, i){
+					return (100 + (i*(breadth/dataCount)));
+				})
+				.attr("y", function(d){
+					return yScale(d.VALUE);
+				})
+				.attr("width", (breadth/dataCount - gap))
+				.attr("height",  function(d){
+					return peak - yScale(d.VALUE);
+				})
+				.attr("fill", chartColor);
+					
+// Addition of scaled label on the y-Axis
+		svgContainer.append("g")
+			.attr("transform", "translate(97, 0)")
+			.call(yAxis);
+
+// Addition of scaled label on the x-Axis		
+		svgContainer.append("g")
+			.attr("transform", "translate(97, " + peak + ")")
+			.call(xAxis);
+
+// Addition of labels into the bar chart.		
+// Source of Unicode: https://www.fileformat.info/info/unicode/char/0025/index.htm
+		var myLabel = svgContainer.selectAll("text")
+			.data(data);
+
+		myLabel.enter()
+			.append("text")
+			.attr("x", function(d, i){
+				return 200+ (i*(breadth/dataCount));
+		})
+			.attr("y", function(d){
+				return 1350 - d.VALUE;
+		})
+			.text("test");
+			//.text(function(d){
+				//return d.VALUE;
+			//});
+		})
+}
+</script>
